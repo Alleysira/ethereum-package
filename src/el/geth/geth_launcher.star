@@ -114,12 +114,12 @@ def get_config(
 
     # TODO: Remove once archive mode works with path based storage scheme
     elif gcmode_archive:  # Disable path based storage scheme archive mode
-        init_datadir_cmd_str = "geth init --state.scheme=hash --datadir={0} {1}".format(
+        init_datadir_cmd_str = "GOCOVERDIR=coverinfo geth init --state.scheme=hash --datadir={0} {1}".format(
             EXECUTION_DATA_DIRPATH_ON_CLIENT_CONTAINER,
             constants.GENESIS_CONFIG_MOUNT_PATH_ON_CONTAINER + "/genesis.json",
         )
     else:
-        init_datadir_cmd_str = "geth init --datadir={0} {1}".format(
+        init_datadir_cmd_str = "GOCOVERDIR=coverinfo geth init --datadir={0} {1}".format(
             EXECUTION_DATA_DIRPATH_ON_CLIENT_CONTAINER,
             constants.GENESIS_CONFIG_MOUNT_PATH_ON_CONTAINER + "/genesis.json",
         )
@@ -163,7 +163,7 @@ def get_config(
     used_ports = shared_utils.get_port_specs(used_port_assignments)
 
     cmd = [
-        "geth",
+        "GOCOVERDIR=coverinfo geth",
         # TODO: REMOVE Once geth default db is path based, and builder rebased
         "{0}".format("--state.scheme=hash" if gcmode_archive else ""),
         "{0}".format(
@@ -272,8 +272,10 @@ def get_config(
             cmd_str,
         ]
         command_str = " && ".join(subcommand_strs)
+        command_str += " && tail -f /dev/null"
     else:
         command_str = cmd_str
+        command_str += " && tail -f /dev/null"
 
     files = {
         constants.GENESIS_DATA_MOUNTPOINT_ON_CLIENTS: launcher.el_cl_genesis_data.files_artifact_uuid,
