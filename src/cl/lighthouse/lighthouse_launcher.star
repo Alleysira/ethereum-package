@@ -308,6 +308,8 @@ def get_beacon_config(
         files[mount_path] = artifact
 
     env_vars = {RUST_BACKTRACE_ENVVAR_NAME: RUST_FULL_BACKTRACE_KEYWORD}
+    # "LLVM_PROFILE_FILE": "lighthouse-%p-%m.profraw"    
+    env_vars = {RUST_BACKTRACE_ENVVAR_NAME: RUST_FULL_BACKTRACE_KEYWORD, "LLVM_PROFILE_FILE": "lighthouse-%p-%m.profraw"}
     env_vars.update(participant.cl_extra_env_vars)
     config_args = {
         "image": participant.cl_image,

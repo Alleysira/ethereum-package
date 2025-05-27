@@ -88,6 +88,7 @@ def get_config(
         constants.GENESIS_DATA_MOUNTPOINT_ON_CLIENTS: el_cl_genesis_data.files_artifact_uuid,
         constants.VALIDATOR_KEYS_DIRPATH_ON_SERVICE_CONTAINER: node_keystore_files.files_artifact_uuid,
     }
+    # "LLVM_PROFILE_FILE": "lighthouse-%p-%m.profraw"
     env = {RUST_BACKTRACE_ENVVAR_NAME: RUST_FULL_BACKTRACE_KEYWORD}
     env.update(participant.vc_extra_env_vars)
 
