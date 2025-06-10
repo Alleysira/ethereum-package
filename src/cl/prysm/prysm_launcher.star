@@ -221,6 +221,8 @@ def get_beacon_config(
         "--pprof",
         "--pprofaddr=0.0.0.0",
         "--pprofport={0}".format(PROFILING_PORT_NUM),
+        # support for lightclient beacon-api methods
+        "--enable-light-client",
     ]
 
     supernode_cmd = [

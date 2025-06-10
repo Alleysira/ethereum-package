@@ -203,6 +203,7 @@ def get_beacon_config(
         "--rest-api-interface=0.0.0.0",
         "--rest-api-port={0}".format(BEACON_HTTP_PORT_NUM),
         "--rest-api-host-allowlist=*",
+        "--Xrest-api-light-client-enabled=true",
         "--data-storage-non-canonical-blocks-enabled=true",
         "--ee-jwt-secret-file=" + constants.JWT_MOUNT_PATH_ON_CONTAINER,
         "--ee-endpoint=" + EXECUTION_ENGINE_ENDPOINT,
