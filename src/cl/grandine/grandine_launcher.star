@@ -222,6 +222,8 @@ def get_beacon_config(
         "--metrics",
         "--metrics-address=0.0.0.0",
         "--metrics-port={0}".format(BEACON_METRICS_PORT_NUM),
+        # Enable validator/liveness
+        "--track-liveness",
     ]
     validator_default_cmd = [
         "--keystore-dir=" + validator_keys_dirpath,
