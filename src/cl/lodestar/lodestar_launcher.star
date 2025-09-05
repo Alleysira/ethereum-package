@@ -181,6 +181,7 @@ def get_beacon_config(
         "--rest.address=0.0.0.0",
         "--rest.namespace=*",
         "--rest.port={0}".format(BEACON_HTTP_PORT_NUM),
+        "--rest.stacktraces",
         "--nat=true",
         "--jwt-secret=" + constants.JWT_MOUNT_PATH_ON_CONTAINER,
         # ENR
@@ -197,6 +198,7 @@ def get_beacon_config(
         "--metrics",
         "--metrics.address=0.0.0.0",
         "--metrics.port={0}".format(BEACON_METRICS_PORT_NUM),
+        "--serveHistoricalState"
     ]
 
     supernode_cmd = [
